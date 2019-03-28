@@ -18,24 +18,31 @@ class App extends Component {
     this.setState({ id : val })
   }
 
-  handleClickIncrease() {
+  async handleClickIncrease() {
+    if (this.state.id >= data.length){
+      await this.setState({
+        id : 0
+      })
+    }
     this.setState({
       id: this.state.id + 1
     })
   }
-  handleClickDecrease() {
+  async handleClickDecrease() {
+    if (this.state.id <= 1){
+      await this.setState({
+        id : 26
+      })
+    }
     this.setState({
-      id: this.state.id - 1
+    id: this.state.id - 1
     })
   }
 
 
   render() {
     var displayCharacters = this.state.characters.map(element=>{
-      if (element.id === 26){
-        (element.id === 1)
-      }
-      else if (element.id === this.state.id){
+      if (element.id === this.state.id){
       return(
           <div>
       <h1>{element.name.first} {element.name.last}</h1>
@@ -58,7 +65,7 @@ class App extends Component {
         </header>
         <body className="background">
           <div className="main">
-          <div className="pageCounter">{this.state.id}/25</div>
+          <div className="pageCounter">{this.state.id}/{data.length} </div>
           {displayCharacters}
           </div>
           <div className="buttons">
