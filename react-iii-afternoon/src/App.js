@@ -20,7 +20,7 @@ class App extends Component {
 
   async handleClickIncrease() {
     if (this.state.id >= data.length){
-      await this.setState({
+      await this.setState({ 
         id : 0
       })
     }
